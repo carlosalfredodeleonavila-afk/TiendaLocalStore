@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LocalStore - Tu Tienda En Línea</title>
+  <link rel="stylesheet" href="estilo.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo" onclick="showCatalog()">LocalStore</div>
+    <div class="header-actions">
+      <button class="cart-btn" onclick="toggleCartModal()">
+        🛒 Ver Carrito
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="catalog-view">
+      <h1 class="section-title">Nuestros Productos</h1>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section id="detail-view" class="hidden">
+      <button class="back-btn" onclick="showCatalog()">← Volver al catálogo</button>
+      <div class="product-detail-container" id="product-detail-content"></div>
+
+      <div class="recommendations-section">
+        <h2>También te podría interesar</h2>
+        <div class="product-grid" id="recommendations-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="cart-modal" onclick="closeCartOnOverlay(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🛒 Tu Carrito de Compras</h2>
+        <button class="close-btn" onclick="toggleCartModal()">&times;</button>
+      </div>
+      
+      <div class="cart-items-list" id="cart-items-list">
+        </div>
+
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Total a pagar:</span>
+          <span id="cart-total-price" class="total-price">$0.00</span>
+        </div>
+        <div class="cart-actions">
+          <button class="clear-btn" onclick="clearCart()">Vaciar Carrito</button>
+          <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
