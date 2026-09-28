@@ -1,0 +1,78 @@
+/* =========================================================
+   Chatbot LocalStore — usa las variables de style.css
+   (--petrol, --mustard, --paper, --ink, --line, etc.)
+   z-index: 50 => queda sobre el header (40) pero debajo de
+   overlays (60), paneles (70) y modales (80) de la tienda.
+   ========================================================= */
+.chat-fab{
+  position: fixed; right: 20px; bottom: 20px; z-index: 50;
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border: 0; border-radius: 999px;
+  background: var(--mustard); color: var(--ink);
+  font: 600 15px/1 var(--font-body);
+  box-shadow: var(--shadow);
+}
+.chat-fab:hover{ background: var(--mustard-dark); }
+
+.chat-panel{
+  position: fixed; right: 20px; bottom: 20px; z-index: 50;
+  width: min(390px, calc(100vw - 24px)); height: min(580px, calc(100vh - 40px));
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--radius-l);
+  box-shadow: var(--shadow);
+  transform-origin: bottom right;
+  animation: chat-open .18s ease-out;
+}
+@keyframes chat-open{ from{ opacity:0; transform: scale(.95) translateY(8px); } }
+
+.chat-head{
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 14px 14px 18px; background: var(--petrol); color: var(--paper);
+}
+.chat-head h2{ margin: 0; font-size: 19px; line-height: 1.2; color: var(--paper); }
+.chat-head small{ display: block; font-size: 13px; opacity: .8; }
+.chat-close{
+  border: 0; background: transparent; color: inherit; font-size: 18px;
+  width: 40px; height: 40px; border-radius: var(--radius-m);
+}
+.chat-close:hover{ background: rgba(255,255,255,.14); }
+
+.chat-log{
+  flex: 1; overflow-y: auto; padding: 16px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.chat-msg{
+  max-width: 88%; padding: 10px 14px; border-radius: 14px;
+  white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.45;
+}
+.chat-msg--bot{ align-self: flex-start; background: var(--paper-dim); border-bottom-left-radius: 4px; }
+.chat-msg--user{ align-self: flex-end; background: var(--petrol); color: var(--paper); border-bottom-right-radius: 4px; }
+.chat-msg--typing{ color: var(--ink-soft); font-style: italic; }
+
+.chat-actions{ display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; max-width: 94%; }
+.chat-chip{
+  padding: 8px 13px; border: 1.5px solid var(--petrol); border-radius: 999px;
+  background: var(--white); color: var(--petrol);
+  font-size: 14px; font-weight: 500; line-height: 1.2; text-align: left;
+}
+.chat-chip:hover{ background: var(--petrol); color: var(--paper); }
+
+.chat-form{ display: flex; gap: 8px; padding: 10px 12px 6px; border-top: 1px solid var(--line); background: var(--white); }
+.chat-form input{
+  flex: 1; min-width: 0; padding: 11px 16px; font-size: 15px;
+  border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink);
+}
+.chat-send{
+  flex: none; width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--petrol); color: var(--paper); font-size: 16px;
+}
+.chat-send:hover{ background: var(--petrol-dark); }
+.chat-send:disabled{ opacity: .5; cursor: default; }
+
+.chat-note{ margin: 0; padding: 2px 14px 10px; font-size: 12px; color: var(--ink-soft); text-align: center; background: var(--white); }
+
+@media (max-width: 520px){
+  .chat-fab{ right: 12px; bottom: 12px; }
+  .chat-panel{ right: 12px; bottom: 12px; height: min(80vh, 580px); }
+}
